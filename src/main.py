@@ -52,14 +52,34 @@ training_results_matrix = c.read_ground_truth_to_matrix('../data/crime-train.txt
 testing_data_matrix = c.read_features_to_matrix('../data/crime-test.txt')
 testing_results_matrix = c.read_ground_truth_to_matrix('../data/crime-test.txt')
 
+
 # Perform Training & Testing for the Closed Form Linear Regression
 weights = r.closed_form_lin_regression(training_data_matrix, training_results_matrix)
-rmse = p.closed_form_lin_regression(testing_data_matrix, testing_results_matrix, weights)
+rmse = p.linear_regression(testing_data_matrix, testing_results_matrix, weights)
 print "Closed Form Linear Regression RMSE (Testing): " + str(rmse)
-rmse = p.closed_form_lin_regression(training_data_matrix, training_results_matrix, weights)
+rmse = p.linear_regression(training_data_matrix, training_results_matrix, weights)
 print "Closed Form Linear Regression RMSE (Training): " + str(rmse)
+
 
 # Perform Training & Testing for the Closed Form Ridge Regression
 weights = r.closed_form_ridge_regression(training_data_matrix, training_results_matrix)
-rmse = p.closed_form_lin_regression(testing_data_matrix, testing_results_matrix, weights)
+rmse = p.linear_regression(testing_data_matrix, testing_results_matrix, weights)
 print "Closed Form Ridge Regression RMSE (Testing): " + str(rmse)
+rmse = p.linear_regression(training_data_matrix, training_results_matrix, weights)
+print "Closed Form Ridge Regression RMSE (Training): " + str(rmse)
+
+
+# Perform Training & Testing for the Gradient Descent Linear Regression
+weights = r.gradient_descent_lin_regression(training_data_matrix, training_results_matrix)
+rmse = p.linear_regression(testing_data_matrix, testing_results_matrix, weights)
+print "Gradient Descent Linear Regression RMSE (Testing): " + str(rmse)
+rmse = p.linear_regression(training_data_matrix, training_results_matrix, weights)
+print "Gradient Descent Linear Regression RMSE (Training): " + str(rmse)
+
+
+# Perform Training & Testing for the Gradient Descent Ridge Regression
+weights = r.gradient_descent_ridge_regression(training_data_matrix, training_results_matrix)
+rmse = p.linear_regression(testing_data_matrix, testing_results_matrix, weights)
+print "Gradient Descent Ridge Regression RMSE (Testing): " + str(rmse)
+rmse = p.linear_regression(training_data_matrix, training_results_matrix, weights)
+print "Gradient Descent Ridge Regression RMSE (Training): " + str(rmse)

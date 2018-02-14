@@ -9,7 +9,7 @@ class prediction:
     def __init__(self):
         pass
 
-    def closed_form_lin_regression(self, features, responses, weights):
+    def linear_regression(self, features, responses, weights):
         # The predictions matrix will be (1 row x #instances columns)
         predictions = weights.transpose() * features.transpose()
         predictions = predictions.transpose()  # (#instances rows x 1 column)

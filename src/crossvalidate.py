@@ -38,7 +38,7 @@ class crossvalidate:
                 training_data = np.vstack(tuple(data_matrices_to_stack))
                 results_data = np.vstack(tuple(results_matrices_to_stack))
                 weights = reg.closed_form_lin_regression(training_data, results_data, l=self.l)
-                single_rmse = pred.closed_form_lin_regression(training_data, results_data, weights)
+                single_rmse = pred.linear_regression(training_data, results_data, weights)
                 rmse += single_rmse
 
             # Calculate the avg RMSE for all combos and log with lambda value
