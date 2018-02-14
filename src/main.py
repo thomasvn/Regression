@@ -46,13 +46,20 @@ c = cleaning.cleaning()
 r = regression.regression()
 p = prediction.prediction()
 
+# Prepare the data for NumPy from the given files
 training_data_matrix = c.read_features_to_matrix('../data/crime-train.txt')
 training_results_matrix = c.read_ground_truth_to_matrix('../data/crime-train.txt')
 testing_data_matrix = c.read_features_to_matrix('../data/crime-test.txt')
 testing_results_matrix = c.read_ground_truth_to_matrix('../data/crime-test.txt')
 
+# Perform Training & Testing for the Closed Form Linear Regression
 weights = r.closed_form_lin_regression(training_data_matrix, training_results_matrix)
 rmse = p.closed_form_lin_regression(testing_data_matrix, testing_results_matrix, weights)
-print rmse
+print "Closed Form Linear Regression RMSE (Testing): " + str(rmse)
+rmse = p.closed_form_lin_regression(training_data_matrix, training_results_matrix, weights)
+print "Closed Form Linear Regression RMSE (Training): " + str(rmse)
 
-r.closed_form_ridge_regression(training_data_matrix, training_results_matrix)
+# Perform Training & Testing for the Closed Form Ridge Regression
+weights = r.closed_form_ridge_regression(training_data_matrix, training_results_matrix)
+rmse = p.closed_form_lin_regression(testing_data_matrix, testing_results_matrix, weights)
+print "Closed Form Ridge Regression RMSE (Testing): " + str(rmse)

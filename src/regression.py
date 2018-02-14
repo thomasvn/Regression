@@ -19,7 +19,10 @@ class regression:
     def closed_form_ridge_regression(self, training_data, training_results):
         pass
         cv = crossvalidate.crossvalidate()
-        cv.determine_lambda(training_data)
+        l = cv.determine_lambda(training_data, training_results)
+        weights = self.closed_form_lin_regression(training_data, training_results, l)
+
+        return weights
 
 
     def gradient_descent_lin_regression(self):
